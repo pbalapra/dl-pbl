@@ -43,3 +43,37 @@ We assume that the outputs at each PBL depend not only on the 16 near-surface va
 
 ![alt text](https://github.com/pbalapra/dl-pbl/blob/master/images/pbl_hac.pdf.jpg "HAC")
 
+
+## Directory structure
+```
+dl-wrf-kansas/
+    Code to compare FNN, HPC, HAC on Logan, KS data for differnet number of training years. 
+
+dl-wrf-kansas-transfer-learning/
+    Code to assess the spatial transferability of the domain-aware neural networks (specifically HAC and HPC) by using a trained model from one location (at Logan, KS as presented above) to other locations within 800 kilometers from the Kansas location with different terrain conditions and vegetation types. We choose ten locations, among which two are (Sites 1 and 2) 300 km away from Logan site; three are (Sites 3, 4, and 5) 430 km away from Logan site; and five are (Sites 6 to 10) 450-800 km away from Logan site, with Sites 9 and 10 the furthest and having the most different elevations from Logan site. 
+```
+
+## Running experiments
+```
+dl-wrf-kansas/
+for i in 55448 43775 29190 14601 1
+    do
+        python code/wrfmodel.py --model_type=hpc --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
+
+        python code/wrfmodel.py --model_type=hac --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
+
+        python code/wrfmodel.py --model_type=mlp --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
+    done
+
+dl-wrf-kansas-transfer-learning/
+
+    for i in 55448 43775 29190 14601 1
+        do
+            python code/wrfmodel.py --model_type=hpc --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
+
+            python code/wrfmodel.py --model_type=hac --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
+
+            python code/wrfmodel.py --model_type=mlp --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
+        done
+
+```
