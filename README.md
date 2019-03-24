@@ -42,13 +42,13 @@ We assume that the outputs at each PBL depend not only on the 16 near-surface va
 ![alt text](https://github.com/pbalapra/dl-pbl/blob/master/images/pbl_hac.pdf.jpg "HAC")
 
 
-### Required software stack
+### Key software dependencies 
 
-* Python>=3.6
-* Keras 
-* TensorFlow
-* scikit-learn 
-
+* Python==3.6
+* Keras==2.0.8 
+* tensorflow==1.3.0
+* scikit-learn==0.19.1
+* pandas==0.20.3 
 
 ### Directory structure
 ```
