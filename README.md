@@ -44,6 +44,14 @@ We assume that the outputs at each PBL depend not only on the 16 near-surface va
 ![alt text](https://github.com/pbalapra/dl-pbl/blob/master/images/pbl_hac.pdf.jpg "HAC")
 
 
+## Required software stack
+
+* Python>=3.6
+* Keras 
+* TensorFlow
+* scikit-learn 
+
+
 ## Directory structure
 ```
 dl-wrf-kansas/
@@ -56,14 +64,14 @@ dl-wrf-kansas-transfer-learning/
 ## Running experiments
 ```
 dl-wrf-kansas/
-for i in 55448 43775 29190 14601 1
-    do
-        python code/wrfmodel.py --model_type=hpc --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
+    for i in 55448 43775 29190 14601 1
+        do
+            python code/wrfmodel.py --model_type=hpc --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
 
-        python code/wrfmodel.py --model_type=hac --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
+            python code/wrfmodel.py --model_type=hac --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
 
-        python code/wrfmodel.py --model_type=mlp --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
-    done
+            python code/wrfmodel.py --model_type=mlp --start_id=$i --optimizer=adam --learning_rate=0.001 --epochs=1000 --batch_size=64
+        done
 
 dl-wrf-kansas-transfer-learning/
 
