@@ -1,4 +1,4 @@
-# Deep learning for planetary boundary layer parameterization
+# Deep learning for planetary boundary layer parameterization in weather forecast model
 
 ## Fast domain-aware neural network emulation of a planetary boundary layer parameterization in a numerical weather forecast model
 
