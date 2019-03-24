@@ -23,8 +23,10 @@ We consider three variants of DNN (see below). We construct all of them using a 
 ## Naïve DNN:
 Deep feed forward neural network (FFN): This is a fully connected feed forward deep neural network constructed as a sequence of K neural blocks, where the input of the ith neural block is from i-1th block, and the output of the ith neural block is given as the input of the i+1th neural block. The sizes of the input and output neural layers are 16 (=near surface variables) and 85 (= 17 vertical levels × 5 output variables). See Figure 1a for an illustration. 
 
-## Domain-aware DNN:
+https://github.com/pbalapra/dl-pbl/blob/master/images/pbl_fnn.pdf.jpg
 
+
+## Domain-aware DNN:
 While the FFN is a typical way of applying network for finding the non-linear relationship between input and output, a key drawback of the naïve FFN is that it does not consider the underlying PBL domain structure such as the patterns that are locality-specific and the vertical dependence between different vertical levels of each profile. This is not typically needed for neural networks in general and, in fact, is usually avoided. That is because for classification and regression one seeks filters that activate when they find visual features irrespective to their location. For example, a picture can be classified as a certain object even when that object has never appeared in the given position in the training set. In our case, however, location is fixed and represents specific positions in the domain. Consequently, we want to learn the particular influence of location in the forecast. For example, topography plays a role in precipitation and can help refine the output. One could use a fully connected layer to achieve the same result. This dependence may inform the NN and provide better accuracy and data efficiency. To that end, we develop two variants of domain-aware DNNs for PBL emulation. 
 
 ### Hierarchically connected network with previous layer only connection (HPC) 
@@ -34,4 +36,5 @@ We assume that the outputs at each altitude level depend not only on the 16 near
 ### Hierarchically connected network with all previous layers connection (HAC) 
 
 We assume that the outputs at each PBL depend not only on the 16 near-surface variables but also on all altitude levels below it. The input to an ith neural block comprises input neural layer of 16 near-surface variables and all outputs of the {1, 2,…, i-1} neural blocks below it. See Figure 1c for an example. 
+
 
