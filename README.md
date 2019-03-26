@@ -19,7 +19,7 @@ The major inputs are near surface characteristics including: near surface water 
 We consider three variants of DNN (see below). We construct all of them using a neural block that comprises a dense neural layer with N nodes and a rectified linear activation function, where N is user-defined parameters.
 
 #### Naïve DNN:
-Deep feed forward neural network (FFN): This is a fully connected feed forward deep neural network constructed as a sequence of K neural blocks, where the input of the ith neural block is from i-1th block, and the output of the ith neural block is given as the input of the i+1th neural block. The sizes of the input and output neural layers are 16 (=near surface variables) and 85 (= 17 vertical levels × 5 output variables). See Figure 1a for an illustration. 
+Deep feed forward neural network (FFN): This is a fully connected feed forward deep neural network constructed as a sequence of K neural blocks, where the input of the ith neural block is from i-1th block, and the output of the ith neural block is given as the input of the i+1th neural block. The sizes of the input and output neural layers are 16 (=near surface variables) and 85 (= 17 vertical levels × 5 output variables). See the following figure for an illustration. 
 
 ![alt text](https://github.com/pbalapra/dl-pbl/blob/master/images/pbl_fnn.pdf.jpg "FNN")
 
@@ -29,14 +29,14 @@ While the FFN is a typical way of applying network for finding the non-linear re
 
 ##### Hierarchically connected network with previous layer only connection (HPC) 
 
-We assume that the outputs at each altitude level depend not only on the 16 near-surface variables but also on the altitude level below it. To model this explicitly, we develop a domain-aware DNN variant in which 17 neural block are connected as follows: the input to an ith (i>1) neural block comprises input neural layer of 16 near-surface variables and the 5 outputs of the i-1th neural block. The first neural block, which is next to the input layer, receives only inputs from the input neural layer of 16 near-surface variables. See Figure 1b for an example. 
+We assume that the outputs at each altitude level depend not only on the 16 near-surface variables but also on the altitude level below it. To model this explicitly, we develop a domain-aware DNN variant in which 17 neural block are connected as follows: the input to an ith (i>1) neural block comprises input neural layer of 16 near-surface variables and the 5 outputs of the i-1th neural block. The first neural block, which is next to the input layer, receives only inputs from the input neural layer of 16 near-surface variables. See the following figure for an example. 
 
 ![alt text](https://github.com/pbalapra/dl-pbl/blob/master/images/pbl_hpc.pdf.jpg "HPC")
 
 
 ##### Hierarchically connected network with all previous layers connection (HAC) 
 
-We assume that the outputs at each PBL depend not only on the 16 near-surface variables but also on all altitude levels below it. The input to an ith neural block comprises input neural layer of 16 near-surface variables and all outputs of the {1, 2,…, i-1} neural blocks below it. See Figure 1c for an example. 
+We assume that the outputs at each PBL depend not only on the 16 near-surface variables but also on all altitude levels below it. The input to an ith neural block comprises input neural layer of 16 near-surface variables and all outputs of the {1, 2,…, i-1} neural blocks below it. See the following figure for an example. 
 
 
 ![alt text](https://github.com/pbalapra/dl-pbl/blob/master/images/pbl_hac.pdf.jpg "HAC")
